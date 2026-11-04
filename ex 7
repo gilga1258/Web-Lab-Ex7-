@@ -1,0 +1,275 @@
+Program 1
+<!DOCTYPE html>
+<html>
+<head>
+<title>Budget Calculator</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    background: lightblue;
+}
+.box {
+    background: white;
+    width: 350px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+input {
+    padding: 8px;
+    margin: 8px;
+    width: 150px;
+}
+button {
+    padding: 10px;
+    background: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>Budget Calculator</h2>
+<label>Total Amount:</label><br>
+<input type="number" id="amount"><br>
+<label>Room Rent (%):</label><br>
+<input type="number" id="rent" value="30"><br>
+<label>Accessories (%):</label><br>
+<input type="number" id="accessories" value="20"><br>
+<label>Emergency (%):</label><br>
+<input type="number" id="emergency" value="20"><br>
+<label>Saving (%):</label><br>
+<input type="number" id="saving" value="30"><br>
+<button id="evaluate">Evaluate My Money</button>
+<h3>Results</h3>
+<p>Room Rent: <span id="r1">0</span></p>
+<p>Accessories: <span id="r2">0</span></p>
+<p>Emergency: <span id="r3">0</span></p>
+<p>Saving: <span id="r4">0</span></p>
+</div>
+<script>
+$(document).ready(function() {
+    $("#evaluate").click(function() {
+        var amount = Number($("#amount").val());
+        var rent = Number($("#rent").val());
+        var accessories = Number($("#accessories").val());
+        var emergency = Number($("#emergency").val());
+        var saving = Number($("#saving").val());
+        var total = rent + accessories + emergency + saving;
+
+        if ($("#amount").val() == "" || amount <= 0) {
+            alert("Enter a valid amount!");
+        }
+        else if (rent < 0 || accessories < 0 ||
+                 emergency < 0 || saving < 0 ||
+                 total != 100) {
+            alert("Percentage values must add up to 100!");
+        }
+        else {
+            $("#r1").text(amount * rent / 100);
+            $("#r2").text(amount * accessories / 100);
+            $("#r3").text(amount * emergency / 100);
+            $("#r4").text(amount * saving / 100);
+        }
+    });
+});
+</script>
+</body>
+</html>
+
+Program 2
+<!DOCTYPE html>
+<html>
+<head>
+<title>Cake Order</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<style>
+body {
+    font-family: Arial;
+    background: pink;
+    text-align: center;
+}
+.box {
+    background: white;
+    width: 350px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+select, input {
+    padding: 8px;
+    margin: 10px;
+}
+button {
+    padding: 10px;
+    background: deeppink;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>Cake Order</h2>
+<label>Select Cake Size:</label><br>
+<select id="size">
+<option value="500">Small - ₹500</option>
+<option value="1000">Medium - ₹1000</option>
+<option value="1500">Large - ₹1500</option>
+</select>
+<br>
+<label>Select Flavour:</label><br>
+<select id="flavour">
+<option value="100">Chocolate - ₹100</option>
+<option value="150">Vanilla - ₹150</option>
+<option value="200">Strawberry - ₹200</option>
+</select>
+<br>
+<label>Quantity:</label><br>
+<input type="number" id="quantity" value="1" min="1">
+<br>
+<button id="calculate">Calculate Price</button>
+<h3>Total Price: ₹<span id="total">0</span></h3>
+</div>
+<script>
+$(document).ready(function() {
+    $("#calculate").click(function() {
+        var size = Number($("#size").val());
+        var flavour = Number($("#flavour").val());
+        var quantity = Number($("#quantity").val());
+
+        if (quantity <= 0 || !Number.isInteger(quantity)) {
+            alert("Enter a valid quantity!");
+        }
+        else {
+            var total = (size + flavour) * quantity;
+            $("#total").text(total);
+        }
+    });
+});
+</script>
+</body>
+</html>
+
+Program 3
+<!DOCTYPE html>
+<html>
+<head>
+<title>Car Body Workshop</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    background: lightblue;
+}
+.box {
+    background: white;
+    width: 450px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+#car {
+    margin: 50px auto;
+    position: relative;
+    width: 300px;
+    height: 100px;
+}
+#body {
+    background: red;
+    width: 280px;
+    height: 55px;
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+    border-radius: 30px 50px 10px 10px;
+}
+.glass {
+    background: lightblue;
+    width: 65px;
+    height: 35px;
+    position: absolute;
+    top: 5px;
+    left: 120px;
+    border-radius: 20px 25px 0 0;
+}
+.wheel {
+    background: black;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+}
+#w1 {
+    left: 45px;
+}
+#w2 {
+    right: 45px;
+}
+select {
+    padding: 8px;
+    margin: 10px;
+}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>Car Body Workshop</h2>
+<div id="car">
+<div id="body"></div>
+<div class="glass"></div>
+<div class="wheel" id="w1"></div>
+<div class="wheel" id="w2"></div>
+</div>
+<h3>Change Car Colour</h3>
+<select id="color">
+<option value="red">Red</option>
+<option value="blue">Blue</option>
+<option value="green">Green</option>
+<option value="yellow">Yellow</option>
+<option value="black">Black</option>
+</select>
+<h3>Change Glass Tint</h3>
+<select id="tint">
+<option value="lightblue">Light Blue</option>
+<option value="gray">Gray</option>
+<option value="black">Black</option>
+<option value="white">White</option>
+</select>
+<h3>Change Tyre Size</h3>
+<select id="tyre">
+<option value="35px">Small</option>
+<option value="45px">Medium</option>
+<option value="60px">Large</option>
+</select>
+</div>
+<script>
+$(document).ready(function() {
+    $("#color").change(function() {
+        var color = $(this).val();
+        $("#body").css("background-color", color);
+    });
+
+    $("#tint").change(function() {
+        var tint = $(this).val();
+        $(".glass").css("background-color", tint);
+    });
+
+    $("#tyre").change(function() {
+        var size = $(this).val();
+        $(".wheel").css({
+            "width": size,
+            "height": size
+        });
+    });
+});
+</script>
+</body>
+</html>
